@@ -19,7 +19,7 @@ Pronoun = (
 
 TypeLiteral = v:TypeLiteralValue { return {t: 'Literal', v} }
 TypeLiteralValue =
-	('nothing'/'nobody'/'nowhere'/'empty'/'gone') {return 0} // TODO null?
+	('null'/'nothing'/'nobody'/'nowhere'/'empty'/'gone') {return null}
 	/ ('true'/'right'/'yes'/'ok') {return true}
     / ('false'/'wrong'/'no'/'lies') {return false}
     / 'mysterious' { return undefined}
