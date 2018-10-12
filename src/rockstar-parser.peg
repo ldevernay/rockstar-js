@@ -31,8 +31,8 @@ Number = n:$([0-9]+ ('.' [0-9]+)?)
 	{ return {t: 'Literal', v: parseFloat(n)} }
 
 ArithmeticStatement = BuildUp / KnockDown
-BuildUp = 'Build' _ v:Variable _ 'up'
-	{ return {t: 'Rement', v: v, o: '++'} }
+BuildUp = 'Build' _ v:Variable _ up:$(', up'/',up'/' up'/'up')+
+	{ return {t: 'Rement', v: v, o: '++'+(up.match(/up/g) || []).length} }
 KnockDown = 'Knock' _ v:Variable _ 'down'
 	{ return {t: 'Rement', v: v, o: '--'} }
 
