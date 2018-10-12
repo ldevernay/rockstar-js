@@ -31,10 +31,10 @@ Number = n:$([0-9]+ ('.' [0-9]+)?)
 	{ return {t: 'Literal', v: parseFloat(n)} }
 
 ArithmeticStatement = BuildUp / KnockDown
-BuildUp = 'Build' _ v:Variable _ up:$(', up'/',up'/' up'/'up')+
-	{ return {t: 'Rement', v: v, o: '++'+(up.match(/up/g) || []).length} }
-KnockDown = 'Knock' _ v:Variable _ 'down'
-	{ return {t: 'Rement', v: v, o: '--'} }
+BuildUp = 'Build' _ v:Variable up:$((' up')(', up'/',up'/' up')*)
+	{ return {t: 'Rement', v: v, o: ' + '+(up.match(/up/g) || []).length} }
+KnockDown = 'Knock' _ v:Variable down:$((' down')(', down'/',down'/' down')*)
+	{ return {t: 'Rement', v: v, o: ' - '+(down.match(/down/g) || []).length} }
 
 PoeticString = v:Variable _ 'says' ' ' t:$[^\n]*
 	{ return {t: 'Set', v: v, e: {t: 'Literal', v: t}} }
