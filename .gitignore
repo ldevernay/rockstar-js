@@ -3,4 +3,5 @@ examples/*.js
 rockstar-parser.js
 coverage/
 .nyc_output/
+package-lock.json
 
