@@ -13,14 +13,15 @@
     "lib": "src/",
     "example": "examples/"
   },
-  "dependencies": {},
   "devDependencies": {
+    "chai": "^4.2.0",
     "mocha": "^5.2.0",
+    "nyc": "^13.1.0",
     "pegjs": "^0.10.0"
   },
   "scripts": {
     "build": "pegjs src/rockstar-parser.peg",
-    "test": "mocha",
+    "test": "nyc --reporter=html mocha",
     "prepublish": "npm run build"
   }
 }
